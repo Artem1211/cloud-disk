@@ -1,5 +1,6 @@
 # dependencies
 server/node_modules
+server/files
 
 # dependencies
 client/node_modules
