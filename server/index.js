@@ -11,7 +11,7 @@ const PORT = config.get('serverPort')
 app.use(fileUpload({}))
 app.use(corsMiddleware)
 app.use(express.json())
-console.log(config.get("dbUrl"));
+app.use(express.static('static'))
 app.use("/api/auth", authRouter)
 app.use("/api/files", fileRouter)
 
