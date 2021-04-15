@@ -2,6 +2,6 @@
     "serverPort" : 5000,
     "dbUrl" : "mongodb+srv://Artem1211:<pass>@cloud.z390k.mongodb.net/cloud?retryWrites=true&w=majority",
     "secretKey": "mern-secret-key",
-    "filePath":  "C:\\Projects\\TrainingProgects\\cloud-disk\\server\\files",
-    "staticPath":  "C:\\Projects\\TrainingProgects\\cloud-disk\\server\\static"
+    "filePath":  "C:\\Projects\\gitHub\\cloud-disk\\server\\files",
+    "staticPath":  "C:\\Projects\\gitHub\\cloud-disk\\server\\static"
 }
