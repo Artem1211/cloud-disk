@@ -9,7 +9,7 @@ const CopyWebpackPlugin = require('copy-webpack-plugin')
 const paths = require('./paths')
 
 module.exports = {
-  entry: [path.resolve(paths.src, 'index.jsx')],
+  entry: [path.resolve(paths.src, 'index.tsx')],
   output: {
     path: paths.build,
     filename: '[name].bundle.js',
