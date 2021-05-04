@@ -1,16 +1,20 @@
 import React, { useState } from 'react'
 import { useDispatch } from 'react-redux'
-import './authorization.scss'
-import Input from '../../utils/input/Input'
-import { login } from '../../actions/user'
+import { Button, Paper, Typography } from '@ui/mui'
+import Input from '../../../../utils/input/Input'
+import { login } from '../../../../actions/user'
 
-const Login = () => {
+type Props = {
+  className?: string
+}
+
+export const LoginForm: React.FC<Props> = ({ className }) => {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const dispatch = useDispatch()
   return (
-    <div className='authorization'>
-      <div className='authorization__header'>Авторизация</div>
+    <Paper className={className}>
+      <Typography variant='h6'>Авторизация</Typography>
 
       <Input value={email} setValue={setEmail} type='text' placeholder='Введите email...' />
 
@@ -20,15 +24,7 @@ const Login = () => {
         type='password'
         placeholder='Введите пароль...'
       />
-      <button
-        type='button'
-        className='authorization__btn'
-        onClick={() => dispatch(login(email, password))}
-      >
-        Войти
-      </button>
-    </div>
+      <Button onClick={() => dispatch(login(email, password))}>Войти</Button>
+    </Paper>
   )
 }
-
-export default Login

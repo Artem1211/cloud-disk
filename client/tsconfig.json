@@ -15,7 +15,13 @@
     "isolatedModules": true,
     // Import non-ES modules as default imports.
     "esModuleInterop": true,
-    "skipLibCheck": true
+    "skipLibCheck": true,
+    "paths": {
+      "@common/*": ["./src/common/*"],
+      "@ui/*": ["./src/common/ui/*"],
+      "@ui*": ["./src/common/ui"],
+      "@features/*": ["./src/features/*"]
+    }
   },
   "include": ["src"]
 }

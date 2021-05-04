@@ -18,6 +18,12 @@ module.exports = {
   },
   resolve: {
     extensions: ['.tsx', '.ts', '.js', '.jsx'],
+    alias: {
+      '@': paths.src,
+      '@common': path.resolve(paths.src, 'common'),
+      '@features': path.resolve(paths.src, 'features'),
+      '@ui': path.resolve(paths.src, 'common/ui'),
+    },
   },
   plugins: [
     new webpack.ProvidePlugin({

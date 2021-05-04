@@ -4,8 +4,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { Navbar } from './navbar'
 import './app.scss'
 
-import Registration from './authorization/Registration'
-import Login from './authorization/Login'
+import { LoginForm, RegistrationForm } from '../features'
 
 import { auth } from '../actions/user'
 import Disk from './disk/Disk'
@@ -28,8 +27,8 @@ function App() {
         <div className='wrap'>
           {!isAuth ? (
             <Switch>
-              <Route component={Registration} path='/registration' />
-              <Route component={Login} path='/login' />
+              <Route component={RegistrationForm} path='/registration' />
+              <Route component={LoginForm} path='/login' />
               <Redirect to='/login' />
             </Switch>
           ) : (

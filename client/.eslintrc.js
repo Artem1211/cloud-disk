@@ -35,9 +35,10 @@ module.exports = {
     'react/prop-types': 'off',
     'import/prefer-default-export': 0,
     '@typescript-eslint/explicit-module-boundary-types': 0,
+    'react/jsx-filename-extension': [1, { extensions: ['.js', '.jsx', '.ts', '.tsx'] }],
     'no-alert': 0, // позже выпилить
     'import/no-unresolved': 'off',
-    // 'import/extensions': 'off',
+    'import/extensions': 'off', // надо подумать
     'no-use-before-define': 0, // React import
     'jsx-a11y/click-events-have-key-events': 'off',
     'jsx-a11y/no-static-element-interactions': 'off',

@@ -1,13 +1,15 @@
 import React from 'react'
-import './input.scss'
+// import { TextField } from '../../common/ui/mui'
+import { TextField } from '@ui/mui'
 
 const Input = ({ setValue, value, type, placeholder }) => {
   return (
-    <input
+    <TextField
       onChange={event => setValue(event.target.value)}
       value={value}
-      type={type}
       placeholder={placeholder}
+      variant='outlined'
+      type=''
     />
   )
 }
