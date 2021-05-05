@@ -1,2 +1,6 @@
 export * from './Login'
 export * from './Registration'
+export * from './Navbar'
+export * from './Profile'
+export * from './Registration'
+export * from './Disk'

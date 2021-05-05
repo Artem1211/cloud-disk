@@ -2,9 +2,9 @@ import React from 'react'
 import { CSSTransition, TransitionGroup } from 'react-transition-group'
 import './fileList.scss'
 import { useSelector } from 'react-redux'
-import File from './file/File'
+import { File } from '../File'
 
-const FileList = () => {
+export const FileList = () => {
   const files = useSelector(state => state.files.files)
   const fileView = useSelector(state => state.files.view)
 
@@ -42,5 +42,3 @@ const FileList = () => {
   }
   return null
 }
-
-export default FileList

@@ -1,11 +1,11 @@
 import React from 'react'
 
 import { useDispatch, useSelector } from 'react-redux'
-import UploadFile from './UploadFile'
+import { UploadFile } from './UploadFile'
 import './uploader.scss'
-import { hideUploader } from '../../../reducers/uploadReducer'
+import { hideUploader } from '../../../../reducers/uploadReducer'
 
-const Uploader = () => {
+export const Uploader = () => {
   const files = useSelector(state => state.upload.files)
   const isVisible = useSelector(state => state.upload.isVisible)
   const dispatch = useDispatch()
@@ -30,5 +30,3 @@ const Uploader = () => {
     )
   )
 }
-
-export default Uploader

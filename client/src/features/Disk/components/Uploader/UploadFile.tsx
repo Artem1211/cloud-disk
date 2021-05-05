@@ -1,9 +1,9 @@
 import React from 'react'
 import './uploader.scss'
 import { useDispatch } from 'react-redux'
-import { removeUploadFile } from '../../../reducers/uploadReducer'
+import { removeUploadFile } from '../../../../reducers/uploadReducer'
 
-const UploadFile = ({ file }) => {
+export const UploadFile = ({ file }) => {
   const dispatch = useDispatch()
 
   return (
@@ -25,5 +25,3 @@ const UploadFile = ({ file }) => {
     </div>
   )
 }
-
-export default UploadFile

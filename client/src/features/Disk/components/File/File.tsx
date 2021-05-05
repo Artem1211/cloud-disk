@@ -7,7 +7,7 @@ import { pushToStack, setCurrentDir } from '../../../../reducers/fileReducer'
 import { downloadFile, deleteFile } from '../../../../actions/file'
 import sizeFormat from '../../../../utils/sizeFormat'
 
-const File = ({ file }) => {
+export const File = ({ file }) => {
   const dispatch = useDispatch()
   const currentDir = useSelector(state => state.files.currentDir)
   const fileView = useSelector(state => state.files.view)
@@ -82,5 +82,3 @@ const File = ({ file }) => {
   }
   return null
 }
-
-export default File

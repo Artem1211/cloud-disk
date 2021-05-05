@@ -1,15 +1,17 @@
 import React, { useState } from 'react'
-import './navbar.scss'
 import { NavLink } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
-import Logo from '../../assets/img/navbar-logo.svg'
-import { logout } from '../../reducers/userReducer'
-import { searchFiles, getFiles } from '../../actions/file'
-import { showLoader } from '../../reducers/appReducer'
-import avatarLogo from '../../assets/img/avatar.svg'
-import { API_URL } from '../../config'
+import Logo from '../../../../assets/img/navbar-logo.svg'
+import { logout } from '../../../../reducers/userReducer'
+import { searchFiles, getFiles } from '../../../../actions/file'
+import { showLoader } from '../../../../reducers/appReducer'
+import avatarLogo from '../../../../assets/img/avatar.svg'
+import { API_URL } from '../../../../config'
 
-export const Navbar = () => {
+type Props = {
+  className?: string
+}
+export const Navbar: React.FC<Props> = ({ className }) => {
   const isAuth = useSelector(state => state.user.isAuth)
   const currentDir = useSelector(state => state.files.currentDir)
   const currentUser = useSelector(state => state.user.currentUser)
@@ -78,5 +80,3 @@ export const Navbar = () => {
     </div>
   )
 }
-
-export default Navbar

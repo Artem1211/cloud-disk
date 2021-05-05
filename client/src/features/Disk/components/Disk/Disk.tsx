@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { getFiles, uploadFile } from '../../actions/file'
-import FileList from './fileList/FileList'
+import { getFiles, uploadFile } from '../../../../actions/file'
+import { FileList } from '../FileList'
 import './disk.scss'
-import Popup from './Popup'
-import { setCurrentDir, setFileView, setPopupDisplay } from '../../reducers/fileReducer'
-import Uploader from './uploader/Uploader'
+import { Popup } from '../Popup'
+import { setCurrentDir, setFileView, setPopupDisplay } from '../../../../reducers/fileReducer'
+import { Uploader } from '../Uploader'
 
-const Disk = () => {
+export const Disk = () => {
   const dispatch = useDispatch()
   const currentDir = useSelector(state => state.files.currentDir)
   const loader = useSelector(state => state.app.loader)
@@ -118,5 +118,3 @@ const Disk = () => {
     </div>
   )
 }
-
-export default Disk

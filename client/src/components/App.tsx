@@ -1,15 +1,12 @@
 import React, { useEffect } from 'react'
 import { BrowserRouter, Redirect, Route, Switch } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
-import { Navbar } from './navbar'
+// import { Navbar } from './navbar'
 import './app.scss'
 
-import { LoginForm, RegistrationForm } from '../features'
+import { LoginForm, RegistrationForm, Navbar, Profile, Disk } from '../features'
 
 import { auth } from '../actions/user'
-import Disk from './disk/Disk'
-
-import Profile from './profile/Profile'
 
 function App() {
   const isAuth = useSelector(state => state.user.isAuth)

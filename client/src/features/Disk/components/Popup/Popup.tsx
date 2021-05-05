@@ -1,10 +1,10 @@
 import React, { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import Input from '../../utils/input/Input'
-import { setPopupDisplay } from '../../reducers/fileReducer'
-import { createDir } from '../../actions/file'
+import Input from '../../../../utils/input/Input'
+import { setPopupDisplay } from '../../../../reducers/fileReducer'
+import { createDir } from '../../../../actions/file'
 
-const Popup = () => {
+export const Popup = () => {
   const [dirName, setDirName] = useState('')
   const popupDisplay = useSelector(state => state.files.popupDisplay)
   const currentDir = useSelector(state => state.files.currentDir)
@@ -44,5 +44,3 @@ const Popup = () => {
     </div>
   )
 }
-
-export default Popup

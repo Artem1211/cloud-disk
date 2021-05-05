@@ -1,8 +1,11 @@
 import React from 'react'
 import { useDispatch } from 'react-redux'
-import { deleteAvatar, uploadAvatar } from '../../actions/user'
+import { deleteAvatar, uploadAvatar } from '../../../../actions/user'
 
-const Profile = () => {
+type Props = {
+  className?: string
+}
+export const Profile: React.FC<Props> = () => {
   const dispatch = useDispatch()
 
   function changeHandler(e) {
@@ -24,5 +27,3 @@ const Profile = () => {
     </div>
   )
 }
-
-export default Profile
