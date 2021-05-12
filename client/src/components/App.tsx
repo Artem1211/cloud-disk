@@ -1,14 +1,14 @@
 import React, { useEffect } from 'react'
 import { BrowserRouter, Redirect, Route, Switch } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
-// import { Navbar } from './navbar'
+import { Container } from '@ui/mui'
 import './app.scss'
 
 import { LoginForm, RegistrationForm, Navbar, Profile, Disk } from '../features'
 
 import { auth } from '../actions/user'
 
-function App() {
+export const App = () => {
   const isAuth = useSelector(state => state.user.isAuth)
 
   const dispatch = useDispatch()
@@ -19,26 +19,22 @@ function App() {
 
   return (
     <BrowserRouter>
-      <div className='app'>
+      <Container maxWidth='lg'>
         <Navbar />
-        <div className='wrap'>
-          {!isAuth ? (
-            <Switch>
-              <Route component={RegistrationForm} path='/registration' />
-              <Route component={LoginForm} path='/login' />
-              <Redirect to='/login' />
-            </Switch>
-          ) : (
-            <Switch>
-              <Route exact component={Disk} path='/' />
-              <Route exact component={Profile} path='/profile' />
-              <Redirect to='/' />
-            </Switch>
-          )}
-        </div>
-      </div>
+        {!isAuth ? (
+          <Switch>
+            <Route component={RegistrationForm} path='/registration' />
+            <Route component={LoginForm} path='/login' />
+            <Redirect to='/login' />
+          </Switch>
+        ) : (
+          <Switch>
+            <Route exact component={Disk} path='/' />
+            <Route exact component={Profile} path='/profile' />
+            <Redirect to='/' />
+          </Switch>
+        )}
+      </Container>
     </BrowserRouter>
   )
 }
-
-export default App

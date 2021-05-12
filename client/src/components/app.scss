@@ -10,19 +10,3 @@
 body {
   background-color: $background-color;
 }
-
-#root {
-  width: 100%;
-}
-
-.app {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.wrap {
-  width: 1140px;
-  display: flex;
-  flex-direction: column;
-}
