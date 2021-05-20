@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
+import { Button, Autocomplete, TextField, IconButton } from '@ui/mui'
+import { DehazeIcon, AppsIcon } from '@common/icons'
 import { getFiles, uploadFile } from '../../../../actions/file'
 import { FileList } from '../FileList'
 import './disk.scss'
@@ -53,6 +55,11 @@ export const Disk = () => {
     setDragEnter(false)
   }
 
+  const options = [
+    { label: 'По имени', value: 'name' },
+    { label: 'По типу', value: 'type' },
+    { label: 'По дате', value: 'date' },
+  ]
   if (loader) {
     return (
       <div className='loader'>
@@ -62,45 +69,44 @@ export const Disk = () => {
   }
   return !dragEnter ? (
     <div
-      className='disk'
       onDragEnter={dragEnterHandler}
       onDragLeave={dragLeaveHandler}
       onDragOver={dragEnterHandler}
     >
-      <div className='disk__btns'>
-        <button type='button' className='disk__back' onClick={() => backClickHandler()}>
+      <div>
+        <Button variant='contained' onClick={() => backClickHandler()}>
           Назад
-        </button>
-        <button type='button' className='disk__create' onClick={() => showPopupHandler()}>
+        </Button>
+        <Button variant='contained' onClick={() => showPopupHandler()}>
           Создать папку
-        </button>
-        <div className='disk__upload'>
-          <label htmlFor='disk__upload-input' className='disk__upload-label'>
-            Загрузить файл
-          </label>
-          <input
-            multiple
-            onChange={event => fileUploadHandler(event)}
-            type='file'
-            id='disk__upload-input'
-            className='disk__upload-input'
-          />
-        </div>
-        <select className='disk__select' value={sort} onChange={e => setSort(e.target.value)}>
-          <option value='name'>По имени</option>
-          <option value='type'>По типу</option>
-          <option value='date'>По дате</option>
-        </select>
-        <button
-          type='button'
-          className='disk__plate'
-          onClick={() => dispatch(setFileView('plate'))}
+        </Button>
+        <label htmlFor='disk__upload-input' className='disk__upload-label'>
+          Загрузить файл
+        </label>
+        <input
+          multiple
+          onChange={event => fileUploadHandler(event)}
+          type='file'
+          id='disk__upload-input'
+          className='disk__upload-input'
         />
-        <button
-          type='button'
-          className='disk__list'
-          onClick={() => dispatch(setFileView('list'))}
+        <Autocomplete
+          options={options}
+          getOptionLabel={option => option.label}
+          value={options.find(el => el.value === sort)}
+          onChange={(event, newValue) => {
+            if (newValue) setSort(newValue.value)
+          }}
+          style={{ width: 300 }}
+          // eslint-disable-next-line react/jsx-props-no-spreading
+          renderInput={params => <TextField {...params} label='Сортировка' variant='outlined' />}
         />
+        <IconButton size='small' onClick={() => dispatch(setFileView('plate'))}>
+          <AppsIcon />
+        </IconButton>
+        <IconButton size='small' onClick={() => dispatch(setFileView('list'))}>
+          <DehazeIcon />
+        </IconButton>
       </div>
       <FileList />
       <Popup />

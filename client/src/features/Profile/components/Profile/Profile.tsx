@@ -1,5 +1,6 @@
 import React from 'react'
 import { useDispatch } from 'react-redux'
+import { Button } from '@ui/mui'
 import { deleteAvatar, uploadAvatar } from '../../../../actions/user'
 
 type Props = {
@@ -15,9 +16,9 @@ export const Profile: React.FC<Props> = () => {
 
   return (
     <div>
-      <button type='button' onClick={() => dispatch(deleteAvatar())}>
+      <Button variant='contained' onClick={() => dispatch(deleteAvatar())}>
         Удалить аватар
-      </button>
+      </Button>
       <input
         accept='image/*'
         onChange={e => changeHandler(e)}

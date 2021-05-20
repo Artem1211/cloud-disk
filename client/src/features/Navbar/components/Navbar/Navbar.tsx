@@ -1,11 +1,11 @@
 import React, { useState } from 'react'
 import { NavLink } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
-import Logo from '../../../../assets/img/navbar-logo.svg'
+import { AppBar, Toolbar, Typography, TextField, Avatar } from '@ui/mui'
+import { LibraryBooksIcon } from '@common/icons'
 import { logout } from '../../../../reducers/userReducer'
 import { searchFiles, getFiles } from '../../../../actions/file'
 import { showLoader } from '../../../../reducers/appReducer'
-import avatarLogo from '../../../../assets/img/avatar.svg'
 import { API_URL } from '../../../../config'
 
 type Props = {
@@ -20,7 +20,7 @@ export const Navbar: React.FC<Props> = ({ className }) => {
   const [searchName, setSearchName] = useState('')
   const [searchTimeout, setSearchTimeout] = useState(false)
 
-  const avatar = currentUser.avatar ? `${API_URL + currentUser.avatar}` : avatarLogo
+  const avatar = currentUser.avatar && `${API_URL + currentUser.avatar}`
 
   function searchChangeHandler(e) {
     setSearchName(e.target.value)
@@ -43,40 +43,35 @@ export const Navbar: React.FC<Props> = ({ className }) => {
     }
   }
   return (
-    <div className='navbar'>
-      <div className='container'>
-        <img alt='' className='navbar__logo' src={Logo} />
-        <div className='navbar__header'>MERN CLOUD</div>
+    <AppBar position='static'>
+      <Toolbar>
+        <LibraryBooksIcon />
+        <Typography>MERN CLOUD</Typography>
         {isAuth && (
-          <input
-            className='navbar__search'
+          <TextField
             placeholder='Название файла...'
-            type='text'
             value={searchName}
             onChange={searchChangeHandler}
+            variant='outlined'
           />
         )}
         {!isAuth && (
-          <div className='navbar__login'>
+          <div>
             <NavLink to='/login'>Войти</NavLink>
           </div>
         )}
         {!isAuth && (
-          <div className='navbar__registration'>
+          <div>
             <NavLink to='/registration'>Регистрация</NavLink>
           </div>
         )}
-        {isAuth && (
-          <div className='navbar__login' onClick={() => dispatch(logout())}>
-            Выход
-          </div>
-        )}
+        {isAuth && <Typography onClick={() => dispatch(logout())}>Выход</Typography>}
         {isAuth && (
           <NavLink to='/profile'>
-            <img alt='' className='navbar__avatar' src={avatar} />
+            <Avatar src={avatar} />
           </NavLink>
         )}
-      </div>
-    </div>
+      </Toolbar>
+    </AppBar>
   )
 }
