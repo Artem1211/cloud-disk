@@ -1,8 +1,8 @@
 import React from 'react'
-import './file.scss'
 import { useDispatch, useSelector } from 'react-redux'
-import dirLogo from '../../../../assets/img/dir.svg'
-import fileLogo from '../../../../assets/img/file.svg'
+import { FolderIcon, InsertDriveFileIcon } from '@common/icons'
+import { TableCell, TableRow, Button } from '@ui/mui'
+
 import { pushToStack, setCurrentDir } from '../../../../reducers/fileReducer'
 import { downloadFile, deleteFile } from '../../../../actions/file'
 import sizeFormat from '../../../../utils/sizeFormat'
@@ -30,52 +30,42 @@ export const File = ({ file }) => {
   }
   if (fileView === 'list') {
     return (
-      <div className='file' onClick={() => openDirHandler(file)}>
-        <img src={file.type === 'dir' ? dirLogo : fileLogo} alt='' className='file__img' />
-        <div className='file__name'>{file.name}</div>
-        <div className='file__date'>{file.date.slice(0, 10)}</div>
-        <div className='file__size'>{sizeFormat(file.size)}</div>
-        {file.type !== 'dir' && (
-          <button
-            type='button'
-            onClick={e => downloadClickHandler(e)}
-            className='file__btn file__download'
-          >
-            download
-          </button>
+      <TableRow onClick={() => openDirHandler(file)}>
+        <TableCell>{file.type === 'dir' ? <FolderIcon /> : <InsertDriveFileIcon />}</TableCell>
+        <TableCell>{file.name}</TableCell>
+        <TableCell>{file.date.slice(0, 10)}</TableCell>
+        <TableCell>{sizeFormat(file.size)}</TableCell>
+        {file.type !== 'dir' ? (
+          <TableCell>
+            <Button variant='contained' onClick={e => downloadClickHandler(e)}>
+              Скачать
+            </Button>
+          </TableCell>
+        ) : (
+          <TableCell />
         )}
-        <button
-          type='button'
-          onClick={e => deleteClickHandler(e)}
-          className='file__btn file__delete'
-        >
-          delete
-        </button>
-      </div>
+        <TableCell>
+          <Button variant='contained' onClick={e => deleteClickHandler(e)}>
+            Удалить
+          </Button>
+        </TableCell>
+      </TableRow>
     )
   }
   if (fileView === 'plate') {
     return (
-      <div className='file-plate' onClick={() => openDirHandler(file)}>
-        <img src={file.type === 'dir' ? dirLogo : fileLogo} alt='' className='file-plate__img' />
-        <div className='file-plate__name'>{file.name}</div>
-        <div className='file-plate__btns'>
+      <div onClick={() => openDirHandler(file)}>
+        {file.type === 'dir' ? <FolderIcon /> : <InsertDriveFileIcon />}
+        <div>{file.name}</div>
+        <div>
           {file.type !== 'dir' && (
-            <button
-              type='button'
-              onClick={e => downloadClickHandler(e)}
-              className='file-plate__btn file-plate__download'
-            >
-              download
-            </button>
+            <Button variant='contained' onClick={e => downloadClickHandler(e)}>
+              Скачать
+            </Button>
           )}
-          <button
-            type='button'
-            onClick={e => deleteClickHandler(e)}
-            className='file-plate__btn file-plate__delete'
-          >
-            delete
-          </button>
+          <Button variant='contained' onClick={e => deleteClickHandler(e)}>
+            Удалить
+          </Button>
         </div>
       </div>
     )

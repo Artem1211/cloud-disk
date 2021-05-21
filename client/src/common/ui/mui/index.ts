@@ -8,6 +8,12 @@ import Toolbar from '@material-ui/core/Toolbar'
 import Avatar from '@material-ui/core/Avatar'
 import Autocomplete from '@material-ui/lab/Autocomplete'
 import IconButton from '@material-ui/core/IconButton'
+import Table from '@material-ui/core/Table'
+import TableBody from '@material-ui/core/TableBody'
+import TableCell from '@material-ui/core/TableCell'
+import TableContainer from '@material-ui/core/TableContainer'
+import TableHead from '@material-ui/core/TableHead'
+import TableRow from '@material-ui/core/TableRow'
 
 export {
   TextField,
@@ -20,4 +26,10 @@ export {
   Avatar,
   Autocomplete,
   IconButton,
+  Table,
+  TableBody,
+  TableCell,
+  TableContainer,
+  TableHead,
+  TableRow,
 }

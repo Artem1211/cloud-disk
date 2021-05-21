@@ -1,7 +1,6 @@
 import React from 'react'
-import { CSSTransition, TransitionGroup } from 'react-transition-group'
-import './fileList.scss'
 import { useSelector } from 'react-redux'
+import { TableCell, Table, TableBody, TableHead, TableRow } from '@ui/mui'
 import { File } from '../File'
 
 export const FileList = () => {
@@ -9,12 +8,12 @@ export const FileList = () => {
   const fileView = useSelector(state => state.files.view)
 
   if (files.length === 0) {
-    return <div className='loader'>Файлы не найдены</div>
+    return <div>Файлы не найдены</div>
   }
 
   if (fileView === 'plate') {
     return (
-      <div className='fileplate'>
+      <div>
         {files.map(file => (
           <File key={file._id} file={file} />
         ))}
@@ -24,20 +23,23 @@ export const FileList = () => {
 
   if (fileView === 'list') {
     return (
-      <div className='filelist'>
-        <div className=' filelist__header'>
-          <div className='filelist__name'>Название</div>
-          <div className='filelist__date'>Дата</div>
-          <div className='filelist__size'>Размер</div>
-        </div>
-        <TransitionGroup>
+      <Table size='small'>
+        <TableHead>
+          <TableRow>
+            <TableCell>Тип</TableCell>
+            <TableCell>Название</TableCell>
+            <TableCell>Дата</TableCell>
+            <TableCell>Размер</TableCell>
+            <TableCell>Скачать</TableCell>
+            <TableCell>Удалить</TableCell>
+          </TableRow>
+        </TableHead>
+        <TableBody>
           {files.map(file => (
-            <CSSTransition key={file._id} timeout={500} classNames='file' exit={false}>
-              <File file={file} />
-            </CSSTransition>
+            <File file={file} key={file._id} />
           ))}
-        </TransitionGroup>
-      </div>
+        </TableBody>
+      </Table>
     )
   }
   return null
