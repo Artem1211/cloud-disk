@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
+import { Dialog, DialogTitle, DialogContent, DialogActions, Button } from '@ui/mui'
 import Input from '../../../../utils/input/Input'
 import { setPopupDisplay } from '../../../../reducers/fileReducer'
 import { createDir } from '../../../../actions/file'
@@ -12,35 +13,38 @@ export const Popup = () => {
 
   function createHandler() {
     dispatch(createDir(currentDir, dirName))
+    dispatch(setPopupDisplay('none'))
+  }
+
+  const handleClose = () => {
+    dispatch(setPopupDisplay('none'))
   }
 
   return (
-    <div
-      className='popup'
-      onClick={() => dispatch(setPopupDisplay('none'))}
-      style={{ display: popupDisplay }}
-    >
-      <div className='popup__content' onClick={event => event.stopPropagation()}>
-        <div className='popup__header'>
-          <div className='popup__title'>Создать новую папку</div>
-          <button
-            type='button'
-            className='popup__close'
-            onClick={() => dispatch(setPopupDisplay('none'))}
-          >
-            X
-          </button>
-        </div>
-        <Input
-          type='text'
-          placeholder='Введите название папки...'
-          value={dirName}
-          setValue={setDirName}
-        />
-        <button type='button' className='popup__create' onClick={() => createHandler()}>
-          Создать
-        </button>
-      </div>
+    <div>
+      <Dialog
+        open={popupDisplay === 'flex'}
+        onClose={handleClose}
+        aria-labelledby='form-dialog-title'
+      >
+        <DialogTitle id='form-dialog-title'>Создать новую папку</DialogTitle>
+        <DialogContent>
+          <Input
+            type='text'
+            placeholder='Введите название папки...'
+            value={dirName}
+            setValue={setDirName}
+          />
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={handleClose} color='primary'>
+            Отмена
+          </Button>
+          <Button onClick={() => createHandler()} color='primary'>
+            Создать
+          </Button>
+        </DialogActions>
+      </Dialog>
     </div>
   )
 }

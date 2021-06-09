@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { Button, Autocomplete, TextField, IconButton } from '@ui/mui'
+import { Button, Autocomplete, TextField, IconButton, CircularProgress } from '@ui/mui'
 import { DehazeIcon, AppsIcon } from '@common/icons'
 import { getFiles, uploadFile } from '../../../../actions/file'
 import { FileList } from '../FileList'
-import './disk.scss'
 import { Popup } from '../Popup'
 import { setCurrentDir, setFileView, setPopupDisplay } from '../../../../reducers/fileReducer'
 import { Uploader } from '../Uploader'
+import { StyledDropArea } from './styled'
 
 export const Disk = () => {
   const dispatch = useDispatch()
@@ -61,11 +61,7 @@ export const Disk = () => {
     { label: 'По дате', value: 'date' },
   ]
   if (loader) {
-    return (
-      <div className='loader'>
-        <div className='lds-dual-ring' />
-      </div>
-    )
+    return <CircularProgress />
   }
   return !dragEnter ? (
     <div
@@ -80,15 +76,12 @@ export const Disk = () => {
         <Button variant='contained' onClick={() => showPopupHandler()}>
           Создать папку
         </Button>
-        <label htmlFor='disk__upload-input' className='disk__upload-label'>
-          Загрузить файл
-        </label>
+        <label htmlFor='disk__upload-input'>Загрузить файл</label>
         <input
           multiple
           onChange={event => fileUploadHandler(event)}
           type='file'
           id='disk__upload-input'
-          className='disk__upload-input'
         />
         <Autocomplete
           options={options}
@@ -113,14 +106,13 @@ export const Disk = () => {
       <Uploader />
     </div>
   ) : (
-    <div
-      className='drop-area'
+    <StyledDropArea
       onDrop={dropHandler}
       onDragEnter={dragEnterHandler}
       onDragLeave={dragLeaveHandler}
       onDragOver={dragEnterHandler}
     >
       Перетащите файлы сюда
-    </div>
+    </StyledDropArea>
   )
 }

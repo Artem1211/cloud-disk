@@ -2,8 +2,7 @@ import React, { useEffect } from 'react'
 import { BrowserRouter, Redirect, Route, Switch } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { Container } from '@ui/mui'
-import './app.scss'
-
+import { GlobalStyle } from './AppGlobalStyles'
 import { LoginForm, RegistrationForm, Navbar, Profile, Disk } from '../features'
 
 import { auth } from '../actions/user'
@@ -35,6 +34,7 @@ export const App = () => {
           </Switch>
         )}
       </Container>
+      <GlobalStyle />
     </BrowserRouter>
   )
 }
