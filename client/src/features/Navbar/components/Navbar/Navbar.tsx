@@ -11,7 +11,7 @@ import { API_URL } from '../../../../config'
 type Props = {
   className?: string
 }
-export const Navbar: React.FC<Props> = ({ className }) => {
+export const Navbar: React.FC<Props> = () => {
   const isAuth = useSelector(state => state.user.isAuth)
   const currentDir = useSelector(state => state.files.currentDir)
   const currentUser = useSelector(state => state.user.currentUser)

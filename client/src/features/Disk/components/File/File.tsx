@@ -7,7 +7,10 @@ import { pushToStack, setCurrentDir } from '../../../../reducers/fileReducer'
 import { downloadFile, deleteFile } from '../../../../actions/file'
 import sizeFormat from '../../../../utils/sizeFormat'
 
-export const File = ({ file }) => {
+type Props = {
+  className?: string
+}
+export const File: React.FC<Props> = ({ file }) => {
   const dispatch = useDispatch()
   const currentDir = useSelector(state => state.files.currentDir)
   const fileView = useSelector(state => state.files.view)

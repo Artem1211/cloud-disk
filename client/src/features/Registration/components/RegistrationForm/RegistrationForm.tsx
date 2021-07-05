@@ -1,6 +1,5 @@
 import React, { useState } from 'react'
-import { Button, Paper, Typography } from '@ui/mui'
-import Input from '../../../../utils/input/Input'
+import { Button, Paper, Typography, TextField } from '@ui/mui'
 import { registration } from '../../../../actions/user'
 
 type Props = {
@@ -14,14 +13,19 @@ export const RegistrationForm: React.FC<Props> = ({ className }) => {
     <Paper className={className}>
       <Typography variant='h6'>Регистрация</Typography>
 
-      <Input value={email} setValue={setEmail} type='text' placeholder='Введите email...' />
-
-      <Input
-        value={password}
-        setValue={setPassword}
-        type='password'
-        placeholder='Введите пароль...'
+      <TextField
+        onChange={event => setEmail(event.target.value)}
+        value={email}
+        placeholder='Введите email...'
+        variant='outlined'
       />
+      <TextField
+        onChange={event => setPassword(event.target.value)}
+        value={password}
+        placeholder='Введите пароль...'
+        variant='outlined'
+      />
+
       <Button onClick={() => registration(email, password)}>Зарегестрироваться</Button>
     </Paper>
   )

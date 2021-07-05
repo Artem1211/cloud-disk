@@ -1,11 +1,13 @@
 import React, { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { Dialog, DialogTitle, DialogContent, DialogActions, Button } from '@ui/mui'
-import Input from '../../../../utils/input/Input'
+import { Dialog, DialogTitle, DialogContent, DialogActions, Button, TextField } from '@ui/mui'
 import { setPopupDisplay } from '../../../../reducers/fileReducer'
 import { createDir } from '../../../../actions/file'
 
-export const Popup = () => {
+type Props = {
+  className?: string
+}
+export const Popup: React.FC<Props> = () => {
   const [dirName, setDirName] = useState('')
   const popupDisplay = useSelector(state => state.files.popupDisplay)
   const currentDir = useSelector(state => state.files.currentDir)
@@ -29,11 +31,11 @@ export const Popup = () => {
       >
         <DialogTitle id='form-dialog-title'>Создать новую папку</DialogTitle>
         <DialogContent>
-          <Input
-            type='text'
-            placeholder='Введите название папки...'
+          <TextField
+            onChange={event => setDirName(event.target.value)}
             value={dirName}
-            setValue={setDirName}
+            placeholder='Введите название папки...'
+            variant='outlined'
           />
         </DialogContent>
         <DialogActions>

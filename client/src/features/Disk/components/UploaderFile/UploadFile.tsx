@@ -9,7 +9,10 @@ import {
   StyledFileUploadBar,
 } from './styled'
 
-export const UploadFile = ({ file }) => {
+type Props = {
+  className?: string
+}
+export const UploadFile: React.FC<Props> = ({ file }) => {
   const dispatch = useDispatch()
 
   return (

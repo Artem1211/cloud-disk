@@ -9,7 +9,11 @@ import { setCurrentDir, setFileView, setPopupDisplay } from '../../../../reducer
 import { Uploader } from '../Uploader'
 import { StyledDropArea } from './styled'
 
-export const Disk = () => {
+type Props = {
+  className?: string
+}
+
+export const Disk: React.FC<Props> = () => {
   const dispatch = useDispatch()
   const currentDir = useSelector(state => state.files.currentDir)
   const loader = useSelector(state => state.app.loader)

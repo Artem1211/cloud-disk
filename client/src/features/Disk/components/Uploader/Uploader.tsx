@@ -3,7 +3,6 @@ import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { Card, CardContent, Typography } from '@ui/mui'
 import { UploadFile } from '../UploaderFile'
-import './uploader.scss'
 import { hideUploader } from '../../../../reducers/uploadReducer'
 import {
   StyledUploader,
@@ -12,7 +11,11 @@ import {
   StyledUploaderInner,
 } from './styled'
 
-export const Uploader = () => {
+type Props = {
+  className?: string
+}
+
+export const Uploader: React.FC<Props> = () => {
   const files = useSelector(state => state.upload.files)
   const isVisible = true
   // const isVisible = useSelector(state => state.upload.isVisible)

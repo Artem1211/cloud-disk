@@ -3,7 +3,10 @@ import { useSelector } from 'react-redux'
 import { TableCell, Table, TableBody, TableHead, TableRow } from '@ui/mui'
 import { File } from '../File'
 
-export const FileList = () => {
+type Props = {
+  className?: string
+}
+export const FileList: React.FC<Props> = () => {
   const files = useSelector(state => state.files.files)
   const fileView = useSelector(state => state.files.view)
 

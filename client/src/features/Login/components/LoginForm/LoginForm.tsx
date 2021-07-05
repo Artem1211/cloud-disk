@@ -1,7 +1,6 @@
 import React, { useState } from 'react'
 import { useDispatch } from 'react-redux'
-import { Button, Paper, Typography } from '@ui/mui'
-import Input from '../../../../utils/input/Input'
+import { Button, Paper, Typography, TextField } from '@ui/mui'
 import { login } from '../../../../actions/user'
 
 type Props = {
@@ -16,13 +15,18 @@ export const LoginForm: React.FC<Props> = ({ className }) => {
     <Paper className={className}>
       <Typography variant='h6'>Авторизация</Typography>
 
-      <Input value={email} setValue={setEmail} type='text' placeholder='Введите email...' />
-
-      <Input
+      <TextField
+        onChange={event => setEmail(event.target.value)}
+        value={email}
+        placeholder='Введите email...'
+        variant='outlined'
+      />
+      <TextField
+        onChange={event => setPassword(event.target.value)}
         value={password}
-        setValue={setPassword}
-        type='password'
         placeholder='Введите пароль...'
+        variant='outlined'
+        type='password'
       />
       <Button onClick={() => dispatch(login(email, password))}>Войти</Button>
     </Paper>
