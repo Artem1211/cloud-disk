@@ -1,5 +1,4 @@
-const SET_USER = 'SET_USER'
-const LOGOUT = 'LOGOUT'
+import { UserActionTypes } from '../../types/user'
 
 const defaultState = {
   currentUser: {},
@@ -8,14 +7,14 @@ const defaultState = {
 
 export default function userReducer(state = defaultState, action) {
   switch (action.type) {
-    case SET_USER:
+    case UserActionTypes.SET_USER:
       console.log(action.payload)
       return {
         ...state,
         currentUser: action.payload,
         isAuth: true,
       }
-    case LOGOUT:
+    case UserActionTypes.LOGOUT:
       localStorage.removeItem('token')
       return {
         ...state,
@@ -26,6 +25,3 @@ export default function userReducer(state = defaultState, action) {
       return state
   }
 }
-
-export const setUser = user => ({ type: SET_USER, payload: user })
-export const logout = () => ({ type: LOGOUT })

@@ -5,7 +5,7 @@ import { DehazeIcon, AppsIcon } from '@common/icons'
 import { getFiles, uploadFile } from '../../../../actions/file'
 import { FileList } from '../FileList'
 import { Popup } from '../Popup'
-import { setCurrentDir, setFileView, setPopupDisplay } from '../../../../reducers/fileReducer'
+import { setCurrentDir, setFileView, setPopupDisplay } from '../../../../store/action-creators/file'
 import { Uploader } from '../Uploader'
 import { StyledDropArea } from './styled'
 

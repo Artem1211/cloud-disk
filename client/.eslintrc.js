@@ -44,5 +44,7 @@ module.exports = {
     'jsx-a11y/no-static-element-interactions': 'off',
     'jsx-a11y/label-has-associated-control': 'off',
     'jsx-a11y/control-has-associated-label': 'off',
+    'no-shadow': 'off',
+    '@typescript-eslint/no-shadow': ['error'],
   },
 }

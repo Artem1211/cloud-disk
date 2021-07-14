@@ -1,7 +1,7 @@
 import axios from 'axios'
-import { hideLoader, showLoader } from '../reducers/appReducer'
-import { addFile, deleteFileAction, setFiles } from '../reducers/fileReducer'
-import { addUploadFile, changeUploadFile, showUploader } from '../reducers/uploadReducer'
+import { hideLoader, showLoader } from '../store/action-creators/app'
+import { addFile, deleteFileAction, setFiles } from '../store/action-creators/file'
+import { addUploadFile, changeUploadFile, showUploader } from '../store/action-creators/upload'
 import { API_URL } from '../config'
 
 export function getFiles(dirId, sort) {

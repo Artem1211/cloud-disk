@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { FolderIcon, InsertDriveFileIcon } from '@common/icons'
 import { TableCell, TableRow, Button } from '@ui/mui'
 
-import { pushToStack, setCurrentDir } from '../../../../reducers/fileReducer'
+import { pushToStack, setCurrentDir } from '../../../../store/action-creators/file'
 import { downloadFile, deleteFile } from '../../../../actions/file'
 import sizeFormat from '../../../../utils/sizeFormat'
 

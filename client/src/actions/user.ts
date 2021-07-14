@@ -1,5 +1,5 @@
 import axios from 'axios'
-import { setUser } from '../reducers/userReducer'
+import { setUser } from '../store/action-creators/user'
 import { API_URL } from '../config'
 
 export const registration = async (email, password) => {

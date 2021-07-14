@@ -1,5 +1,4 @@
-const SHOW_LOADER = 'SHOW_LOADER'
-const HIDE_LOADER = 'HIDE_LOADER'
+import { AppActionTypes } from '../../types/app'
 
 const defaultState = {
   loader: false,
@@ -7,16 +6,13 @@ const defaultState = {
 
 export default function appReducer(state = defaultState, action) {
   switch (action.type) {
-    case SHOW_LOADER:
+    case AppActionTypes.SHOW_LOADER:
       return { ...state, loader: true }
 
-    case HIDE_LOADER:
+    case AppActionTypes.HIDE_LOADER:
       return { ...state, loader: false }
 
     default:
       return state
   }
 }
-
-export const showLoader = () => ({ type: SHOW_LOADER })
-export const hideLoader = () => ({ type: HIDE_LOADER })

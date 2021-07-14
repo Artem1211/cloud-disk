@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { Dialog, DialogTitle, DialogContent, DialogActions, Button, TextField } from '@ui/mui'
-import { setPopupDisplay } from '../../../../reducers/fileReducer'
+import { setPopupDisplay } from '../../../../store/action-creators/file'
 import { createDir } from '../../../../actions/file'
 
 type Props = {

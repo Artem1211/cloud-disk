@@ -3,7 +3,7 @@ import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { Card, CardContent, Typography } from '@ui/mui'
 import { UploadFile } from '../UploaderFile'
-import { hideUploader } from '../../../../reducers/uploadReducer'
+import { hideUploader } from '../../../../store/action-creators/upload'
 import {
   StyledUploader,
   StyledUploaderClose,
@@ -17,8 +17,7 @@ type Props = {
 
 export const Uploader: React.FC<Props> = () => {
   const files = useSelector(state => state.upload.files)
-  const isVisible = true
-  // const isVisible = useSelector(state => state.upload.isVisible)
+  const isVisible = useSelector(state => state.upload.isVisible)
   const dispatch = useDispatch()
 
   return (

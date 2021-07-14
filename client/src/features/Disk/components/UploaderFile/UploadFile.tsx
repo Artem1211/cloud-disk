@@ -1,6 +1,6 @@
 import React from 'react'
 import { useDispatch } from 'react-redux'
-import { removeUploadFile } from '../../../../reducers/uploadReducer'
+import { removeUploadFile } from '../../../../store/action-creators/upload'
 import {
   StyledFile,
   StyledFileHeader,

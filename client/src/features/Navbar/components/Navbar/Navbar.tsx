@@ -3,9 +3,9 @@ import { NavLink } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { AppBar, Toolbar, Typography, TextField, Avatar } from '@ui/mui'
 import { LibraryBooksIcon } from '@common/icons'
-import { logout } from '../../../../reducers/userReducer'
+import { logout } from '../../../../store/action-creators/user'
 import { searchFiles, getFiles } from '../../../../actions/file'
-import { showLoader } from '../../../../reducers/appReducer'
+import { showLoader } from '../../../../store/action-creators/app'
 import { API_URL } from '../../../../config'
 
 type Props = {
