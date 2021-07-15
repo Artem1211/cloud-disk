@@ -1,6 +1,6 @@
-import { FileActionTypes } from '../../types/file'
+import { FileActionTypes, FileAction, FileState } from '../../types/file'
 
-const defaultState = {
+const defaultState: FileState = {
   files: [],
   currentDir: null,
   popupDisplay: 'none',
@@ -8,7 +8,7 @@ const defaultState = {
   view: 'list',
 }
 
-export default function fileReducer(state = defaultState, action) {
+export default function fileReducer(state = defaultState, action: FileAction) {
   switch (action.type) {
     case FileActionTypes.SET_FILES:
       return { ...state, files: action.payload }

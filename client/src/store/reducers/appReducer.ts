@@ -1,10 +1,10 @@
-import { AppActionTypes } from '../../types/app'
+import { AppActionTypes, AppState, AppAction } from '../../types/app'
 
-const defaultState = {
+const defaultState: AppState = {
   loader: false,
 }
 
-export default function appReducer(state = defaultState, action) {
+export default function appReducer(state = defaultState, action: AppAction) {
   switch (action.type) {
     case AppActionTypes.SHOW_LOADER:
       return { ...state, loader: true }

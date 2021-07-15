@@ -1,11 +1,11 @@
-import { UserActionTypes } from '../../types/user'
+import { UserActionTypes, UserAction, UserState } from '../../types/user'
 
-const defaultState = {
+const defaultState: UserState = {
   currentUser: {},
   isAuth: false,
 }
 
-export default function userReducer(state = defaultState, action) {
+export default function userReducer(state = defaultState, action: UserAction) {
   switch (action.type) {
     case UserActionTypes.SET_USER:
       console.log(action.payload)

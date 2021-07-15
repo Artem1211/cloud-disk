@@ -1,4 +1,4 @@
-import { AppActionTypes } from '../../types/app'
+import { AppActionTypes, AppAction } from '../../types/app'
 
-export const showLoader = () => ({ type: AppActionTypes.SHOW_LOADER })
-export const hideLoader = () => ({ type: AppActionTypes.HIDE_LOADER })
+export const showLoader = (): AppAction => ({ type: AppActionTypes.SHOW_LOADER })
+export const hideLoader = (): AppAction => ({ type: AppActionTypes.HIDE_LOADER })

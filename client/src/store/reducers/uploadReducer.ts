@@ -1,11 +1,11 @@
-import { UploadActionTypes } from '../../types/upload'
+import { UploadActionTypes, UploadAction, UploadState } from '../../types/upload'
 
-const defaultState = {
+const defaultState: UploadState = {
   isVisible: false,
   files: [],
 }
 
-export default function userReducer(state = defaultState, action) {
+export default function userReducer(state = defaultState, action: UploadAction) {
   switch (action.type) {
     case UploadActionTypes.SHOW_UPLOADER:
       return { ...state, isVisible: true }
