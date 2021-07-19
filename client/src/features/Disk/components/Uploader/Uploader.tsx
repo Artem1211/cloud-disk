@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { useDispatch, useSelector } from 'react-redux'
+import { useDispatch } from 'react-redux'
 import { Card, CardContent, Typography } from '@ui/mui'
 import { UploadFile } from '../UploaderFile'
 import { hideUploader } from '../../../../store/action-creators/upload'
@@ -10,18 +10,19 @@ import {
   StyledUploaderHeader,
   StyledUploaderInner,
 } from './styled'
+import { useTypedSelector } from '../../../../hooks'
 
 type Props = {
   className?: string
 }
 
 export const Uploader: React.FC<Props> = () => {
-  const files = useSelector(state => state.upload.files)
-  const isVisible = useSelector(state => state.upload.isVisible)
+  const files = useTypedSelector(state => state.upload.files)
+  const isVisible = useTypedSelector(state => state.upload.isVisible)
   const dispatch = useDispatch()
 
   return (
-    isVisible && (
+    (isVisible && (
       <StyledUploader>
         <Card elevation={3}>
           <CardContent>
@@ -39,6 +40,7 @@ export const Uploader: React.FC<Props> = () => {
           </CardContent>
         </Card>
       </StyledUploader>
-    )
+    )) ||
+    null
   )
 }

@@ -1,6 +1,7 @@
 import React from 'react'
 import { useDispatch } from 'react-redux'
 import { removeUploadFile } from '../../../../store/action-creators/upload'
+import { UploadFile as UploadFileType } from '../../../../types/upload'
 import {
   StyledFile,
   StyledFileHeader,
@@ -11,6 +12,7 @@ import {
 
 type Props = {
   className?: string
+  file: UploadFileType
 }
 export const UploadFile: React.FC<Props> = ({ file }) => {
   const dispatch = useDispatch()

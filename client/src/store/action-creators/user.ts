@@ -1,6 +1,6 @@
-import { UserActionTypes, UserAction } from '../../types/user'
+import { UserActionTypes, UserAction, User } from '../../types/user'
 
-export const setUser = (user: unknown): UserAction => ({
+export const setUser = (user: User): UserAction => ({
   type: UserActionTypes.SET_USER,
   payload: user,
 })

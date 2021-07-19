@@ -5,7 +5,7 @@ const defaultState: UploadState = {
   files: [],
 }
 
-export default function userReducer(state = defaultState, action: UploadAction) {
+export default function userReducer(state = defaultState, action: UploadAction): UploadState {
   switch (action.type) {
     case UploadActionTypes.SHOW_UPLOADER:
       return { ...state, isVisible: true }

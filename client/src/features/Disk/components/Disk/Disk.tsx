@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
+import { useDispatch } from 'react-redux'
 import { Button, Autocomplete, TextField, IconButton, CircularProgress } from '@ui/mui'
 import { DehazeIcon, AppsIcon } from '@common/icons'
 import { getFiles, uploadFile } from '../../../../actions/file'
@@ -8,6 +8,7 @@ import { Popup } from '../Popup'
 import { setCurrentDir, setFileView, setPopupDisplay } from '../../../../store/action-creators/file'
 import { Uploader } from '../Uploader'
 import { StyledDropArea } from './styled'
+import { useTypedSelector } from '../../../../hooks'
 
 type Props = {
   className?: string
@@ -15,9 +16,9 @@ type Props = {
 
 export const Disk: React.FC<Props> = () => {
   const dispatch = useDispatch()
-  const currentDir = useSelector(state => state.files.currentDir)
-  const loader = useSelector(state => state.app.loader)
-  const dirStack = useSelector(state => state.files.dirStack)
+  const currentDir = useTypedSelector(state => state.files.currentDir)
+  const loader = useTypedSelector(state => state.app.loader)
+  const dirStack = useTypedSelector(state => state.files.dirStack)
   const [dragEnter, setDragEnter] = useState(false)
   const [sort, setSort] = useState('type')
 
@@ -34,24 +35,24 @@ export const Disk: React.FC<Props> = () => {
     dispatch(setCurrentDir(backDirId))
   }
 
-  function fileUploadHandler(event) {
-    const files = [...event.target.files]
+  function fileUploadHandler(event: React.ChangeEvent<HTMLInputElement>) {
+    const files = [...(event.target.files || [])]
     files.forEach(file => dispatch(uploadFile(file, currentDir)))
   }
 
-  function dragEnterHandler(event) {
+  function dragEnterHandler(event: React.DragEvent<HTMLDivElement>) {
     event.preventDefault()
     event.stopPropagation()
     setDragEnter(true)
   }
 
-  function dragLeaveHandler(event) {
+  function dragLeaveHandler(event: React.DragEvent<HTMLDivElement>) {
     event.preventDefault()
     event.stopPropagation()
     setDragEnter(false)
   }
 
-  function dropHandler(event) {
+  function dropHandler(event: React.DragEvent<HTMLDivElement>) {
     event.preventDefault()
     event.stopPropagation()
     const files = [...event.dataTransfer.files]

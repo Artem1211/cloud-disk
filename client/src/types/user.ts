@@ -1,5 +1,13 @@
+export type User = {
+  id: string
+  email: string
+  diskSpace: number
+  usedSpace: number
+  avatar: null | string
+}
+
 export type UserState = {
-  currentUser: unknown
+  currentUser: User | null
   isAuth: boolean
 }
 
@@ -10,7 +18,7 @@ export enum UserActionTypes {
 
 type SetUserAction = {
   type: UserActionTypes.SET_USER
-  payload: unknown
+  payload: User
 }
 
 type LogoutAction = {

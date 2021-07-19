@@ -1,9 +1,25 @@
+export type File = {
+  _id: string
+  name: string
+  type: string
+  accessLink: string
+  size: number
+  path: string
+  date: string
+  user: string
+  parent: string | null
+  childs: string[]
+}
+
+export type PopupDisplay = 'flex' | 'none'
+export type View = 'list' | 'plate'
+
 export type FileState = {
-  files: unknown[]
-  currentDir: unknown
-  popupDisplay: unknown
-  dirStack: unknown[]
-  view: unknown
+  files: File[]
+  currentDir: null | string
+  popupDisplay: PopupDisplay
+  dirStack: (null | string)[]
+  view: View
 }
 
 export enum FileActionTypes {
@@ -18,37 +34,37 @@ export enum FileActionTypes {
 
 type SetFilesAction = {
   type: FileActionTypes.SET_FILES
-  payload: unknown
+  payload: File[]
 }
 
 type SetCurrentDirAction = {
   type: FileActionTypes.SET_CURRENT_DIR
-  payload: unknown
+  payload: string
 }
 
 type AddFileAction = {
   type: FileActionTypes.ADD_FILE
-  payload: unknown
+  payload: File
 }
 
 type SetPopupDisplayAction = {
   type: FileActionTypes.SET_POPUP_DISPLAY
-  payload: unknown
+  payload: PopupDisplay
 }
 
 type PushToStackAction = {
   type: FileActionTypes.PUSH_TO_STACK
-  payload: unknown
+  payload: string
 }
 
 type DeleteFileAction = {
   type: FileActionTypes.DELETE_FILE
-  payload: unknown
+  payload: string
 }
 
 type SetViewAction = {
   type: FileActionTypes.SET_VIEW
-  payload: unknown
+  payload: View
 }
 
 export type FileAction =

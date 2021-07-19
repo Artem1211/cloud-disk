@@ -1,14 +1,14 @@
 import React from 'react'
-import { useSelector } from 'react-redux'
 import { TableCell, Table, TableBody, TableHead, TableRow } from '@ui/mui'
 import { File } from '../File'
+import { useTypedSelector } from '../../../../hooks'
 
 type Props = {
   className?: string
 }
 export const FileList: React.FC<Props> = () => {
-  const files = useSelector(state => state.files.files)
-  const fileView = useSelector(state => state.files.view)
+  const files = useTypedSelector(state => state.files.files)
+  const fileView = useTypedSelector(state => state.files.view)
 
   if (files.length === 0) {
     return <div>Файлы не найдены</div>

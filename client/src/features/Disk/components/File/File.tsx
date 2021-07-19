@@ -1,33 +1,36 @@
 import React from 'react'
-import { useDispatch, useSelector } from 'react-redux'
+import { useDispatch } from 'react-redux'
 import { FolderIcon, InsertDriveFileIcon } from '@common/icons'
 import { TableCell, TableRow, Button } from '@ui/mui'
 
 import { pushToStack, setCurrentDir } from '../../../../store/action-creators/file'
 import { downloadFile, deleteFile } from '../../../../actions/file'
 import sizeFormat from '../../../../utils/sizeFormat'
+import { useTypedSelector } from '../../../../hooks'
+import { File as FileType } from '../../../../types/file'
 
 type Props = {
   className?: string
+  file: FileType
 }
 export const File: React.FC<Props> = ({ file }) => {
   const dispatch = useDispatch()
-  const currentDir = useSelector(state => state.files.currentDir)
-  const fileView = useSelector(state => state.files.view)
+  const currentDir = useTypedSelector(state => state.files.currentDir)
+  const fileView = useTypedSelector(state => state.files.view)
 
-  function openDirHandler(openFile) {
+  function openDirHandler(openFile: FileType) {
     if (openFile.type === 'dir') {
       dispatch(pushToStack(currentDir))
       dispatch(setCurrentDir(openFile._id))
     }
   }
 
-  function downloadClickHandler(e) {
+  function downloadClickHandler(e: React.MouseEvent<HTMLButtonElement>) {
     e.stopPropagation()
     downloadFile(file)
   }
 
-  function deleteClickHandler(e) {
+  function deleteClickHandler(e: React.MouseEvent<HTMLButtonElement>) {
     e.stopPropagation()
     dispatch(deleteFile(file))
   }

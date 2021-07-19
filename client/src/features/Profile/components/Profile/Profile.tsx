@@ -9,8 +9,8 @@ type Props = {
 export const Profile: React.FC<Props> = () => {
   const dispatch = useDispatch()
 
-  function changeHandler(e) {
-    const file = e.target.files[0]
+  function changeHandler(e: React.ChangeEvent<HTMLInputElement>) {
+    const file = e.target.files?.[0]
     dispatch(uploadAvatar(file))
   }
 

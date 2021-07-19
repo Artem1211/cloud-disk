@@ -12,3 +12,5 @@ export const rootReducer = combineReducers({
   upload: uploadReducer,
   app: appReducer,
 })
+
+export type RootState = ReturnType<typeof rootReducer>

@@ -7,22 +7,23 @@ import { logout } from '../../../../store/action-creators/user'
 import { searchFiles, getFiles } from '../../../../actions/file'
 import { showLoader } from '../../../../store/action-creators/app'
 import { API_URL } from '../../../../config'
+import { useTypedSelector } from '../../../../hooks'
 
 type Props = {
   className?: string
 }
 export const Navbar: React.FC<Props> = () => {
-  const isAuth = useSelector(state => state.user.isAuth)
-  const currentDir = useSelector(state => state.files.currentDir)
-  const currentUser = useSelector(state => state.user.currentUser)
+  const isAuth = useTypedSelector(state => state.user.isAuth)
+  const currentDir = useTypedSelector(state => state.files.currentDir)
+  const currentUser = useTypedSelector(state => state.user.currentUser)
 
   const dispatch = useDispatch()
   const [searchName, setSearchName] = useState('')
   const [searchTimeout, setSearchTimeout] = useState(false)
 
-  const avatar = currentUser.avatar && `${API_URL + currentUser.avatar}`
+  const avatar = currentUser?.avatar && `${API_URL + currentUser.avatar}`
 
-  function searchChangeHandler(e) {
+  function searchChangeHandler(e: React.ChangeEvent<HTMLInputElement>) {
     setSearchName(e.target.value)
     if (searchTimeout !== false) {
       clearTimeout(searchTimeout)

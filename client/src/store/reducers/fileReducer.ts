@@ -8,7 +8,7 @@ const defaultState: FileState = {
   view: 'list',
 }
 
-export default function fileReducer(state = defaultState, action: FileAction) {
+export default function fileReducer(state = defaultState, action: FileAction): FileState {
   switch (action.type) {
     case FileActionTypes.SET_FILES:
       return { ...state, files: action.payload }

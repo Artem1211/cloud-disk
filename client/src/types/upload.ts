@@ -1,6 +1,12 @@
+export type UploadFile = {
+  name: string
+  progress: number
+  id: number
+}
+
 export type UploadState = {
   isVisible: boolean
-  files: unknown[]
+  files: UploadFile[]
 }
 
 export enum UploadActionTypes {
@@ -21,17 +27,17 @@ type HideUploaderAction = {
 
 type AddUploadFileAction = {
   type: UploadActionTypes.ADD_UPLOAD_FILE
-  payload: unknown
+  payload: UploadFile
 }
 
 type RemoveUploadFileAction = {
   type: UploadActionTypes.REMOVE_UPLOAD_FILE
-  payload: unknown
+  payload: number
 }
 
 type ChangeUploadFileAction = {
   type: UploadActionTypes.CHANGE_UPLOAD_FILE
-  payload: unknown
+  payload: UploadFile
 }
 
 export type UploadAction =

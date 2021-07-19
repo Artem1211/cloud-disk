@@ -4,7 +4,7 @@ const defaultState: AppState = {
   loader: false,
 }
 
-export default function appReducer(state = defaultState, action: AppAction) {
+export default function appReducer(state = defaultState, action: AppAction): AppState {
   switch (action.type) {
     case AppActionTypes.SHOW_LOADER:
       return { ...state, loader: true }

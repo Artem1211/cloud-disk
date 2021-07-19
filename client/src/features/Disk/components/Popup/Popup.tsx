@@ -1,16 +1,17 @@
 import React, { useState } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
+import { useDispatch } from 'react-redux'
 import { Dialog, DialogTitle, DialogContent, DialogActions, Button, TextField } from '@ui/mui'
 import { setPopupDisplay } from '../../../../store/action-creators/file'
 import { createDir } from '../../../../actions/file'
+import { useTypedSelector } from '../../../../hooks'
 
 type Props = {
   className?: string
 }
 export const Popup: React.FC<Props> = () => {
   const [dirName, setDirName] = useState('')
-  const popupDisplay = useSelector(state => state.files.popupDisplay)
-  const currentDir = useSelector(state => state.files.currentDir)
+  const popupDisplay = useTypedSelector(state => state.files.popupDisplay)
+  const currentDir = useTypedSelector(state => state.files.currentDir)
   const dispatch = useDispatch()
 
   function createHandler() {
