@@ -1,11 +1,16 @@
 import axios from 'axios'
+import { Dispatch } from 'redux'
+
 import { hideLoader, showLoader } from '../store/action-creators/app'
 import { addFile, deleteFileAction, setFiles } from '../store/action-creators/file'
 import { addUploadFile, changeUploadFile, showUploader } from '../store/action-creators/upload'
 import { API_URL } from '../config'
+import { SortType, FileAction, File as FileType } from '../types/file'
+import { AppAction } from '../types/app'
+import { UploadAction } from '../types/upload'
 
-export function getFiles(dirId, sort) {
-  return async dispatch => {
+export function getFiles(dirId: string | null, sort?: SortType) {
+  return async (dispatch: Dispatch<FileAction | AppAction>) => {
     try {
       dispatch(showLoader())
       let url = `${API_URL}api/files`
@@ -32,8 +37,8 @@ export function getFiles(dirId, sort) {
   }
 }
 
-export function createDir(dirId, name) {
-  return async dispatch => {
+export function createDir(dirId: string | null, name: string) {
+  return async (dispatch: Dispatch<FileAction>) => {
     try {
       const response = await axios.post(
         `${API_URL}api/files`,
@@ -54,8 +59,8 @@ export function createDir(dirId, name) {
   }
 }
 
-export function uploadFile(file, dirId) {
-  return async dispatch => {
+export function uploadFile(file: File, dirId: string | null) {
+  return async (dispatch: Dispatch<FileAction | UploadAction>) => {
     try {
       const formData = new FormData()
       formData.append('file', file)
@@ -87,7 +92,7 @@ export function uploadFile(file, dirId) {
   }
 }
 
-export async function downloadFile(file) {
+export async function downloadFile(file: FileType) {
   const response = await fetch(`${API_URL}api/files/download?id=${file._id}`, {
     headers: {
       Authorization: `Bearer ${localStorage.getItem('token')}`,
@@ -105,8 +110,8 @@ export async function downloadFile(file) {
   }
 }
 
-export function deleteFile(file) {
-  return async dispatch => {
+export function deleteFile(file: FileType) {
+  return async (dispatch: Dispatch<FileAction>) => {
     try {
       const response = await axios.delete(`${API_URL}api/files?id=${file._id}`, {
         headers: {
@@ -121,8 +126,8 @@ export function deleteFile(file) {
   }
 }
 
-export function searchFiles(search) {
-  return async dispatch => {
+export function searchFiles(search: string) {
+  return async (dispatch: Dispatch<FileAction | UploadAction | AppAction>) => {
     try {
       const response = await axios.get(`${API_URL}api/files/search?search=${search}`, {
         headers: {

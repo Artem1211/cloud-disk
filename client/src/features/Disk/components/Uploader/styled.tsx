@@ -1,7 +1,7 @@
 import styled from 'styled-components'
 
-const backgroundColor = '#e9e6e6'
-const FontColor: '#566885'
+// const backgroundColor = '#e9e6e6'
+// const FontColor: '#566885'
 
 export const StyledUploader = styled.div`
   position: fixed;

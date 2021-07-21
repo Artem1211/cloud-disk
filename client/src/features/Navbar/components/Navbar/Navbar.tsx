@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { NavLink } from 'react-router-dom'
-import { useDispatch, useSelector } from 'react-redux'
+import { useDispatch } from 'react-redux'
 import { AppBar, Toolbar, Typography, TextField, Avatar } from '@ui/mui'
 import { LibraryBooksIcon } from '@common/icons'
 import { logout } from '../../../../store/action-creators/user'
@@ -19,26 +19,15 @@ export const Navbar: React.FC<Props> = () => {
 
   const dispatch = useDispatch()
   const [searchName, setSearchName] = useState('')
-  const [searchTimeout, setSearchTimeout] = useState(false)
 
   const avatar = currentUser?.avatar && `${API_URL + currentUser.avatar}`
 
   function searchChangeHandler(e: React.ChangeEvent<HTMLInputElement>) {
     setSearchName(e.target.value)
-    if (searchTimeout !== false) {
-      clearTimeout(searchTimeout)
-    }
     dispatch(showLoader())
+    // Сделать дебаунс
     if (e.target.value !== '') {
-      setSearchTimeout(
-        setTimeout(
-          value => {
-            dispatch(searchFiles(value))
-          },
-          500,
-          e.target.value
-        )
-      )
+      dispatch(searchFiles(e.target.value))
     } else {
       dispatch(getFiles(currentDir))
     }
@@ -67,11 +56,7 @@ export const Navbar: React.FC<Props> = () => {
           </div>
         )}
         {isAuth && <Typography onClick={() => dispatch(logout())}>Выход</Typography>}
-        {isAuth && (
-          <NavLink to='/profile'>
-            <Avatar src={avatar} />
-          </NavLink>
-        )}
+        {isAuth && <NavLink to='/profile'>{avatar && <Avatar src={avatar} />}</NavLink>}
       </Toolbar>
     </AppBar>
   )

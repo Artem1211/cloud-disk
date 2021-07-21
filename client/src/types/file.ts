@@ -32,6 +32,8 @@ export enum FileActionTypes {
   SET_VIEW = 'SET_VIEW',
 }
 
+export type SortType = 'type' | 'name' | 'date'
+
 type SetFilesAction = {
   type: FileActionTypes.SET_FILES
   payload: File[]
@@ -39,7 +41,7 @@ type SetFilesAction = {
 
 type SetCurrentDirAction = {
   type: FileActionTypes.SET_CURRENT_DIR
-  payload: string
+  payload: string | null
 }
 
 type AddFileAction = {
@@ -54,7 +56,7 @@ type SetPopupDisplayAction = {
 
 type PushToStackAction = {
   type: FileActionTypes.PUSH_TO_STACK
-  payload: string
+  payload: string | null
 }
 
 type DeleteFileAction = {

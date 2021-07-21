@@ -1,8 +1,11 @@
 import axios from 'axios'
+import { Dispatch } from 'redux'
+
 import { setUser } from '../store/action-creators/user'
 import { API_URL } from '../config'
+import { UserAction } from '../types/user'
 
-export const registration = async (email, password) => {
+export const registration = async (email: string, password: string) => {
   try {
     const response = await axios.post(`${API_URL}api/auth/registration`, {
       email,
@@ -14,8 +17,8 @@ export const registration = async (email, password) => {
   }
 }
 
-export const login = (email, password) => {
-  return async dispatch => {
+export const login = (email: string, password: string) => {
+  return async (dispatch: Dispatch<UserAction>) => {
     try {
       const response = await axios.post(`${API_URL}api/auth/login`, {
         email,
@@ -31,7 +34,7 @@ export const login = (email, password) => {
 }
 
 export const auth = () => {
-  return async dispatch => {
+  return async (dispatch: Dispatch<UserAction>) => {
     try {
       const response = await axios.get(`${API_URL}api/auth/auth`, {
         headers: { Authorization: `Bearer ${localStorage.getItem('token')}` },
@@ -46,8 +49,8 @@ export const auth = () => {
   }
 }
 
-export const uploadAvatar = file => {
-  return async dispatch => {
+export const uploadAvatar = (file: File) => {
+  return async (dispatch: Dispatch<UserAction>) => {
     try {
       const formData = new FormData()
       formData.append('file', file)
@@ -62,7 +65,7 @@ export const uploadAvatar = file => {
 }
 
 export const deleteAvatar = () => {
-  return async dispatch => {
+  return async (dispatch: Dispatch<UserAction>) => {
     try {
       const response = await axios.delete(`${API_URL}api/files/avatar`, {
         headers: { Authorization: `Bearer ${localStorage.getItem('token')}` },

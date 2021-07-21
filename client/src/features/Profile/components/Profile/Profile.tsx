@@ -11,7 +11,7 @@ export const Profile: React.FC<Props> = () => {
 
   function changeHandler(e: React.ChangeEvent<HTMLInputElement>) {
     const file = e.target.files?.[0]
-    dispatch(uploadAvatar(file))
+    if (file) dispatch(uploadAvatar(file))
   }
 
   return (

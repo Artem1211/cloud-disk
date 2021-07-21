@@ -9,6 +9,7 @@ import { setCurrentDir, setFileView, setPopupDisplay } from '../../../../store/a
 import { Uploader } from '../Uploader'
 import { StyledDropArea } from './styled'
 import { useTypedSelector } from '../../../../hooks'
+import { SortType } from '../../../../types/file'
 
 type Props = {
   className?: string
@@ -20,7 +21,7 @@ export const Disk: React.FC<Props> = () => {
   const loader = useTypedSelector(state => state.app.loader)
   const dirStack = useTypedSelector(state => state.files.dirStack)
   const [dragEnter, setDragEnter] = useState(false)
-  const [sort, setSort] = useState('type')
+  const [sort, setSort] = useState<SortType>('type')
 
   useEffect(() => {
     dispatch(getFiles(currentDir, sort))
@@ -32,7 +33,7 @@ export const Disk: React.FC<Props> = () => {
 
   function backClickHandler() {
     const backDirId = dirStack.pop()
-    dispatch(setCurrentDir(backDirId))
+    dispatch(setCurrentDir(backDirId || null))
   }
 
   function fileUploadHandler(event: React.ChangeEvent<HTMLInputElement>) {
@@ -92,8 +93,8 @@ export const Disk: React.FC<Props> = () => {
           options={options}
           getOptionLabel={option => option.label}
           value={options.find(el => el.value === sort)}
-          onChange={(event, newValue) => {
-            if (newValue) setSort(newValue.value)
+          onChange={(_s, newValue) => {
+            if (newValue) setSort(newValue.value as SortType)
           }}
           style={{ width: 300 }}
           // eslint-disable-next-line react/jsx-props-no-spreading
