@@ -4,6 +4,8 @@ const config = require('config')
 const fileService = require('../services/fileService')
 const fs = require('fs')
 const Uuid = require('uuid')
+const pathNode = require('path');
+
 class FileController {
     async createDir(req, res) {
         try {
@@ -14,7 +16,7 @@ class FileController {
                 file.path = name
                 await fileService.createDir(req, file)
             } else {
-                file.path = `${parentFile.path}\\${file.name}`
+                file.path = pathNode.join(parentFile.path, file.name);
                 await fileService.createDir(req, file)
                 parentFile.childs.push(file._id)
                 await parentFile.save()
@@ -68,10 +70,12 @@ class FileController {
             user.usedSpace = user.usedSpace + file.size
 
             let path;
+            console.log(req.filePath);
             if (parent) {
-                path = `${req.filePath}\\${user._id}\\${parent.path}\\${file.name}`
+                path = pathNode.join(req.filePath, `${user._id}`, parent.path, file.name);
+
             } else {
-                path = `${req.filePath}\\${user._id}\\${file.name}`
+                path = pathNode.join(req.filePath, `${user._id}`, file.name);
             }
 
             if (fs.existsSync(path)) {
@@ -83,7 +87,7 @@ class FileController {
 
             let filePath = file.name
             if (parent) {
-                filePath = parent.path + '\\' + file.name
+                path = pathNode.join(parent.path, file.name);
             }
             const dbFile = new File({
                 name: file.name,

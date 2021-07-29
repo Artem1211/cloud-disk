@@ -5,11 +5,10 @@ const path = require('path');
 class FileService {
     createDir(req, file) {
         const filePath = this.getPath(req, file)
-        console.log(filePath);
         return new Promise(((resolve, reject) => {
             try {
                 if (!fs.existsSync(filePath)) {
-                    fs.mkdirSync(filePath)
+                    fs.mkdirSync(filePath, {recursive: true})
                     return resolve({ message: 'File was created' })
                 } else {
                     return reject({ message: 'File already exist' })
@@ -30,8 +29,7 @@ class FileService {
     }
 
     getPath(req, file) {
-        // return path.resolve(req.filePath, `${file.user}`, `${file.path}`);
-        return req.filePath + '\/' + file.user + '\/' + file.path
+        return path.join(req.filePath, `${file.user}`, `${file.path}`);
     }
 }
 
