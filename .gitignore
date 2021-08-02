@@ -5,3 +5,5 @@ server/static
 
 # dependencies
 client/node_modules
+
+.DS_Store

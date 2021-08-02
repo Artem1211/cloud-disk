@@ -70,7 +70,7 @@ class FileController {
             user.usedSpace = user.usedSpace + file.size
 
             let path;
-            console.log(req.filePath);
+
             if (parent) {
                 path = pathNode.join(req.filePath, `${user._id}`, parent.path, file.name);
 
@@ -87,7 +87,7 @@ class FileController {
 
             let filePath = file.name
             if (parent) {
-                path = pathNode.join(parent.path, file.name);
+                filePath = pathNode.join(parent.path, file.name);
             }
             const dbFile = new File({
                 name: file.name,
@@ -129,6 +129,7 @@ class FileController {
             if (!file) {
                 return res.status(400).json({ message: 'file not found' })
             }
+            console.log(file, 'file');
             fileService.deleteFile(req, file)
             await file.remove()
             return res.json({ message: 'File was deleted' })
