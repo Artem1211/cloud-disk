@@ -1,15 +1,10 @@
 import React from 'react'
 
 import { useDispatch } from 'react-redux'
-import { Card, CardContent, Typography } from '@ui/mui'
+import { Card, CardContent, Typography, Box } from '@ui/mui'
 import { UploadFile } from '../UploaderFile'
 import { hideUploader } from '../../../../store/action-creators/upload'
-import {
-  StyledUploader,
-  StyledUploaderClose,
-  StyledUploaderHeader,
-  StyledUploaderInner,
-} from './styled'
+import { StyledUploader, StyledUploaderInner } from './styled'
 import { useTypedSelector } from '../../../../hooks'
 
 type Props = {
@@ -27,12 +22,12 @@ export const Uploader: React.FC<Props> = () => {
         <Card elevation={3}>
           <CardContent>
             <StyledUploaderInner>
-              <StyledUploaderHeader>
+              <Box justifyContent='space-between' display='flex'>
                 <Typography>Загрузки</Typography>
-                <StyledUploaderClose type='button' onClick={() => dispatch(hideUploader())}>
+                <button type='button' onClick={() => dispatch(hideUploader())}>
                   X
-                </StyledUploaderClose>
-              </StyledUploaderHeader>
+                </button>
+              </Box>
               {files.map(file => (
                 <UploadFile key={file.id} file={file} />
               ))}

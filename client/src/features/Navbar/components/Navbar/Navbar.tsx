@@ -1,13 +1,14 @@
 import React, { useState } from 'react'
 import { NavLink } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
-import { AppBar, Toolbar, Typography, TextField, Avatar } from '@ui/mui'
+import { AppBar, Toolbar, Typography, TextField, Avatar, Grid, Box } from '@ui/mui'
 import { LibraryBooksIcon } from '@common/icons'
 import { logout } from '../../../../store/action-creators/user'
 import { searchFiles, getFiles } from '../../../../actions/file'
 import { showLoader } from '../../../../store/action-creators/app'
 import { API_URL } from '../../../../config'
 import { useTypedSelector } from '../../../../hooks'
+import { toolbarStyles } from './styled'
 
 type Props = {
   className?: string
@@ -33,30 +34,45 @@ export const Navbar: React.FC<Props> = () => {
     }
   }
   return (
-    <AppBar position='static'>
+    <AppBar position='static' css={toolbarStyles}>
       <Toolbar>
-        <LibraryBooksIcon />
-        <Typography>MERN CLOUD</Typography>
-        {isAuth && (
-          <TextField
-            placeholder='Название файла...'
-            value={searchName}
-            onChange={searchChangeHandler}
-            variant='outlined'
-          />
-        )}
-        {!isAuth && (
-          <div>
-            <NavLink to='/login'>Войти</NavLink>
-          </div>
-        )}
-        {!isAuth && (
-          <div>
-            <NavLink to='/registration'>Регистрация</NavLink>
-          </div>
-        )}
-        {isAuth && <Typography onClick={() => dispatch(logout())}>Выход</Typography>}
-        {isAuth && <NavLink to='/profile'>{avatar && <Avatar src={avatar} />}</NavLink>}
+        <Grid container spacing={2} justify='space-between' alignItems='center'>
+          <Grid item>
+            <Grid container spacing={2} alignItems='center'>
+              <Grid item>
+                <LibraryBooksIcon />
+              </Grid>
+
+              <Grid item>
+                <Typography>MERN CLOUD</Typography>
+              </Grid>
+
+              {isAuth && (
+                <Grid item>
+                  <TextField
+                    placeholder='Название файла...'
+                    value={searchName}
+                    onChange={searchChangeHandler}
+                    variant='outlined'
+                  />
+                </Grid>
+              )}
+            </Grid>
+          </Grid>
+          {!isAuth && (
+            <Grid item>
+              <NavLink to='/login'>Войти</NavLink>
+              <NavLink to='/registration'>Регистрация</NavLink>
+            </Grid>
+          )}
+
+          {isAuth && (
+            <Grid item>
+              <Typography onClick={() => dispatch(logout())}>Выход</Typography>
+              <NavLink to='/profile'>{avatar && <Avatar src={avatar} />}</NavLink>
+            </Grid>
+          )}
+        </Grid>
       </Toolbar>
     </AppBar>
   )

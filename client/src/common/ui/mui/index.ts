@@ -23,6 +23,8 @@ import Popper from '@material-ui/core/Popper'
 import Card from '@material-ui/core/Card'
 import CardActions from '@material-ui/core/CardActions'
 import CardContent from '@material-ui/core/CardContent'
+import Grid from '@material-ui/core/Grid'
+import Box from '@material-ui/core/Box'
 
 export {
   Card,
@@ -50,4 +52,6 @@ export {
   DialogActions,
   DialogContent,
   DialogTitle,
+  Grid,
+  Box,
 }
