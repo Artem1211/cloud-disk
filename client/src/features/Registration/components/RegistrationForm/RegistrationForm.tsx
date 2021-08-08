@@ -1,32 +1,17 @@
-import React, { useState } from 'react'
-import { Button, Paper, Typography, TextField } from '@ui/mui'
+import React from 'react'
 import { registration } from '../../../../actions/user'
+import { LoginLayout } from '../../../../components/LoginLayout'
 
 type Props = {
   className?: string
 }
 export const RegistrationForm: React.FC<Props> = ({ className }) => {
-  const [email, setEmail] = useState('')
-  const [password, setPassword] = useState('')
-
   return (
-    <Paper className={className}>
-      <Typography variant='h6'>Регистрация</Typography>
-
-      <TextField
-        onChange={event => setEmail(event.target.value)}
-        value={email}
-        placeholder='Введите email...'
-        variant='outlined'
-      />
-      <TextField
-        onChange={event => setPassword(event.target.value)}
-        value={password}
-        placeholder='Введите пароль...'
-        variant='outlined'
-      />
-
-      <Button onClick={() => registration(email, password)}>Зарегестрироваться</Button>
-    </Paper>
+    <LoginLayout
+      className={className}
+      title='Регистрация'
+      submitTitle='Зарегистрироваться'
+      onSubmit={({ email, password }) => registration(email, password)}
+    />
   )
 }

@@ -25,6 +25,7 @@ import CardActions from '@material-ui/core/CardActions'
 import CardContent from '@material-ui/core/CardContent'
 import Grid from '@material-ui/core/Grid'
 import Box from '@material-ui/core/Box'
+import Link from '@material-ui/core/Link'
 
 export {
   Card,
@@ -54,4 +55,5 @@ export {
   DialogTitle,
   Grid,
   Box,
+  Link,
 }

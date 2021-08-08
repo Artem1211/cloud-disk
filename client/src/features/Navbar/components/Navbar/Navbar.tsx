@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { NavLink } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
-import { AppBar, Toolbar, Typography, TextField, Avatar, Grid, Box } from '@ui/mui'
+import { AppBar, Toolbar, Typography, TextField, Avatar, Grid, Link, Box } from '@ui/mui'
 import { LibraryBooksIcon } from '@common/icons'
 import { logout } from '../../../../store/action-creators/user'
 import { searchFiles, getFiles } from '../../../../actions/file'
@@ -61,15 +61,27 @@ export const Navbar: React.FC<Props> = () => {
           </Grid>
           {!isAuth && (
             <Grid item>
-              <NavLink to='/login'>Войти</NavLink>
-              <NavLink to='/registration'>Регистрация</NavLink>
+              <Grid container spacing={1}>
+                <Grid item>
+                  <Link to='/login' component={NavLink} color='inherit'>
+                    Войти
+                  </Link>
+                </Grid>
+                <Grid item>
+                  <Link to='/registration' component={NavLink} color='inherit'>
+                    Регистрация
+                  </Link>
+                </Grid>
+              </Grid>
             </Grid>
           )}
 
           {isAuth && (
             <Grid item>
               <Typography onClick={() => dispatch(logout())}>Выход</Typography>
-              <NavLink to='/profile'>{avatar && <Avatar src={avatar} />}</NavLink>
+              <Link to='/profile' component={NavLink} color='inherit'>
+                {avatar && <Avatar src={avatar} />}
+              </Link>
             </Grid>
           )}
         </Grid>
