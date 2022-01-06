@@ -41,9 +41,13 @@ module.exports = {
     'import/extensions': 'off', // надо подумать
     'no-use-before-define': 0, // React import
     'jsx-a11y/click-events-have-key-events': 'off',
+    '@typescript-eslint/ban-ts-comment': 'off',
     'jsx-a11y/no-static-element-interactions': 'off',
     'jsx-a11y/label-has-associated-control': 'off',
     'jsx-a11y/control-has-associated-label': 'off',
+    'react/jsx-no-bind': 'off',
+    'react/no-unused-prop-types': 'off',
+    'react/require-default-props': 'off',
     'no-shadow': 'off',
     '@typescript-eslint/no-shadow': ['error'],
   },

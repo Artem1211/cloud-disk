@@ -13,6 +13,7 @@ export const registration = async (email: string, password: string) => {
     })
     alert(response.data.message)
   } catch (e) {
+    // @ts-ignore
     alert(e.response.data.message)
   }
 }
@@ -28,6 +29,7 @@ export const login = (email: string, password: string) => {
       dispatch(setUser(response.data.user))
       localStorage.setItem('token', response.data.token)
     } catch (e) {
+      // @ts-ignore
       alert(e.response.data.message)
     }
   }
@@ -43,6 +45,7 @@ export const auth = () => {
       dispatch(setUser(response.data.user))
       localStorage.setItem('token', response.data.token)
     } catch (e) {
+      // @ts-ignore
       alert(e.response.data.message)
       localStorage.removeItem('token')
     }

@@ -30,6 +30,7 @@ export function getFiles(dirId: string | null, sort?: SortType) {
       console.log(response.data)
       dispatch(setFiles(response.data))
     } catch (e) {
+      // @ts-ignore
       alert(e.response.data.message)
     } finally {
       dispatch(hideLoader())
@@ -54,6 +55,7 @@ export function createDir(dirId: string | null, name: string) {
       console.log(response.data)
       dispatch(addFile(response.data))
     } catch (e) {
+      // @ts-ignore
       alert(e.response.data.message)
     }
   }
@@ -87,6 +89,7 @@ export function uploadFile(file: File, dirId: string | null) {
       console.log(response.data)
       dispatch(addFile(response.data))
     } catch (e) {
+      // @ts-ignore
       alert(e.response.data.message)
     }
   }
@@ -121,6 +124,7 @@ export function deleteFile(file: FileType) {
       dispatch(deleteFileAction(file._id))
       alert(response.data.message)
     } catch (e) {
+      // @ts-ignore
       alert(e.response.data.message)
     }
   }
@@ -136,6 +140,7 @@ export function searchFiles(search: string) {
       })
       dispatch(setFiles(response.data))
     } catch (e) {
+      // @ts-ignore
       alert(e?.response?.data?.message)
     } finally {
       dispatch(hideLoader())
