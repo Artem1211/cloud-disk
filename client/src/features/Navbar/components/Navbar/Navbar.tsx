@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { NavLink } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
-import { AppBar, Toolbar, Typography, TextField, Avatar, Grid, Link, Box } from '@ui/mui'
+import { AppBar, Toolbar, Typography, TextField, Avatar, Grid, Link } from '@ui/mui'
 import { LibraryBooksIcon } from '@common/icons'
 import { logout } from '../../../../store/action-creators/user'
 import { searchFiles, getFiles } from '../../../../actions/file'

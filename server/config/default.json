@@ -1,5 +1,5 @@
 {
-    "serverPort" : 5000,
+    "serverPort" : 5001,
     "dbUrl" : "mongodb+srv://Artem1211:2303951213An@cloud.z390k.mongodb.net/cloud?retryWrites=true&w=majority",
     "secretKey": "mern-secret-key",
     "filePath":  "C:\\Projects\\gitHub\\cloud-disk\\server\\files",
