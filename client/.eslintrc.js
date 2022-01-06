@@ -41,13 +41,15 @@ module.exports = {
     'import/extensions': 'off', // надо подумать
     'no-use-before-define': 0, // React import
     'jsx-a11y/click-events-have-key-events': 'off',
-    '@typescript-eslint/ban-ts-comment': 'off',
+    '@typescript-eslint/ban-ts-comment': 'off', // возникло при yarn upgrade --latest
     'jsx-a11y/no-static-element-interactions': 'off',
     'jsx-a11y/label-has-associated-control': 'off',
     'jsx-a11y/control-has-associated-label': 'off',
-    'react/jsx-no-bind': 'off',
-    'react/no-unused-prop-types': 'off',
-    'react/require-default-props': 'off',
+    'react/function-component-definition': 'off', // возникло при yarn upgrade --latest
+    'default-param-last': 'off', // возникло при yarn upgrade --latest
+    'react/jsx-no-bind': 'off', // возникло при yarn upgrade --latest
+    'react/no-unused-prop-types': 'off', // возникло при yarn upgrade --latest
+    'react/require-default-props': 'off', // возникло при yarn upgrade --latest
     'no-shadow': 'off',
     '@typescript-eslint/no-shadow': ['error'],
   },
