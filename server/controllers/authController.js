@@ -4,6 +4,7 @@ const config = require('config')
 const fileService = require('../services/fileService')
 const bcrypt = require("bcryptjs")
 const jwt = require('jsonwebtoken')
+const { validationResult } = require("express-validator")
 
 class AuthController {
     async registration(req, res) {
