@@ -36,7 +36,7 @@ export const Navbar: React.FC<Props> = () => {
   return (
     <AppBar position='static' css={toolbarStyles}>
       <Toolbar>
-        <Grid container spacing={2} justify='space-between' alignItems='center'>
+        <Grid container spacing={2} justifyContent='space-between' alignItems='center'>
           <Grid item>
             <Grid container spacing={2} alignItems='center'>
               <Grid item>
