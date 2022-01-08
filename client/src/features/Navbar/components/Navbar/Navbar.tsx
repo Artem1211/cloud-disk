@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { NavLink } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
-import { AppBar, Toolbar, Typography, TextField, Avatar, Link, Stack } from '@ui/mui'
+import { AppBar, Toolbar, Typography, TextField, Avatar, Link, Stack, Button } from '@ui/mui'
 import { LibraryBooksIcon } from '@common/icons'
 import { logout } from '../../../../store/action-creators/user'
 import { searchFiles, getFiles } from '../../../../actions/file'
@@ -70,7 +70,9 @@ export const Navbar: React.FC<Props> = () => {
 
           {isAuth && (
             <div>
-              <Typography onClick={() => dispatch(logout())}>Выход</Typography>
+              <Button onClick={() => dispatch(logout())} color='inherit'>
+                Выход
+              </Button>
               <Link to='/profile' component={NavLink} color='inherit'>
                 {avatar && <Avatar src={avatar} />}
               </Link>
