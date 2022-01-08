@@ -26,6 +26,7 @@ import CardContent from '@mui/material/CardContent'
 import Grid from '@mui/material/Grid'
 import Box from '@mui/material/Box'
 import Link from '@mui/material/Link'
+import Stack from '@mui/material/Stack'
 
 export {
   Card,
@@ -56,4 +57,5 @@ export {
   Grid,
   Box,
   Link,
+  Stack,
 }

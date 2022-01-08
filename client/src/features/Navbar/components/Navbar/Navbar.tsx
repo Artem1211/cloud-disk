@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { NavLink } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
-import { AppBar, Toolbar, Typography, TextField, Avatar, Grid, Link } from '@ui/mui'
+import { AppBar, Toolbar, Typography, TextField, Avatar, Link, Stack } from '@ui/mui'
 import { LibraryBooksIcon } from '@common/icons'
 import { logout } from '../../../../store/action-creators/user'
 import { searchFiles, getFiles } from '../../../../actions/file'
@@ -36,55 +36,47 @@ export const Navbar: React.FC<Props> = () => {
   return (
     <AppBar position='static' css={toolbarStyles}>
       <Toolbar>
-        <Grid container spacing={2} justifyContent='space-between' alignItems='center'>
-          <Grid item>
-            <Grid container spacing={2} alignItems='center'>
-              <Grid item>
-                <LibraryBooksIcon />
-              </Grid>
+        <Stack
+          spacing={2}
+          direction='row'
+          justifyContent='space-between'
+          alignItems='center'
+          width='100%'
+        >
+          <Stack spacing={2} alignItems='center' direction='row'>
+            <LibraryBooksIcon />
 
-              <Grid item>
-                <Typography>MERN CLOUD</Typography>
-              </Grid>
+            <Typography>MERN CLOUD</Typography>
 
-              {isAuth && (
-                <Grid item>
-                  <TextField
-                    placeholder='Название файла...'
-                    value={searchName}
-                    onChange={searchChangeHandler}
-                    variant='outlined'
-                  />
-                </Grid>
-              )}
-            </Grid>
-          </Grid>
+            {isAuth && (
+              <TextField
+                placeholder='Название файла...'
+                value={searchName}
+                onChange={searchChangeHandler}
+                variant='outlined'
+              />
+            )}
+          </Stack>
           {!isAuth && (
-            <Grid item>
-              <Grid container spacing={1}>
-                <Grid item>
-                  <Link to='/login' component={NavLink} color='inherit'>
-                    Войти
-                  </Link>
-                </Grid>
-                <Grid item>
-                  <Link to='/registration' component={NavLink} color='inherit'>
-                    Регистрация
-                  </Link>
-                </Grid>
-              </Grid>
-            </Grid>
+            <Stack spacing={1} direction='row'>
+              <Link to='/login' component={NavLink} color='inherit'>
+                Войти
+              </Link>
+              <Link to='/registration' component={NavLink} color='inherit'>
+                Регистрация
+              </Link>
+            </Stack>
           )}
 
           {isAuth && (
-            <Grid item>
+            <div>
               <Typography onClick={() => dispatch(logout())}>Выход</Typography>
               <Link to='/profile' component={NavLink} color='inherit'>
                 {avatar && <Avatar src={avatar} />}
               </Link>
-            </Grid>
+            </div>
           )}
-        </Grid>
+        </Stack>
       </Toolbar>
     </AppBar>
   )

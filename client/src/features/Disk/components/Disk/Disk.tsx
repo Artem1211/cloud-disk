@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { useDispatch } from 'react-redux'
-import { Button, Autocomplete, TextField, IconButton, CircularProgress, Grid } from '@ui/mui'
+import { Button, Autocomplete, TextField, IconButton, CircularProgress, Stack } from '@ui/mui'
 import { DehazeIcon, AppsIcon } from '@common/icons'
 import { getFiles, uploadFile } from '../../../../actions/file'
 import { FileList } from '../FileList'
@@ -75,18 +75,14 @@ export const Disk: React.FC<Props> = () => {
       onDragLeave={dragLeaveHandler}
       onDragOver={dragEnterHandler}
     >
-      <Grid container spacing={2} alignItems='center'>
-        <Grid item>
-          <Button variant='contained' onClick={() => backClickHandler()}>
-            Назад
-          </Button>
-        </Grid>
-        <Grid item>
-          <Button variant='contained' onClick={() => showPopupHandler()}>
-            Создать папку
-          </Button>
-        </Grid>
-        <Grid item>
+      <Stack direction='row' spacing={2} alignItems='center'>
+        <Button variant='contained' onClick={() => backClickHandler()}>
+          Назад
+        </Button>
+        <Button variant='contained' onClick={() => showPopupHandler()}>
+          Создать папку
+        </Button>
+        <div>
           <label htmlFor='disk__upload-input'>Загрузить файл</label>
           <input
             multiple
@@ -94,30 +90,28 @@ export const Disk: React.FC<Props> = () => {
             type='file'
             id='disk__upload-input'
           />
-        </Grid>
-        <Grid item>
-          <Autocomplete
-            options={options}
-            getOptionLabel={option => option.label}
-            value={options.find(el => el.value === sort)}
-            onChange={(_s, newValue) => {
-              if (newValue) setSort(newValue.value as SortType)
-            }}
-            style={{ width: 300 }}
-            // eslint-disable-next-line react/jsx-props-no-spreading
-            renderInput={params => <TextField {...params} label='Сортировка' variant='outlined' />}
-          />
-        </Grid>
+        </div>
 
-        <Grid item xs={12}>
-          <IconButton size='small' onClick={() => dispatch(setFileView('plate'))}>
-            <AppsIcon />
-          </IconButton>
-          <IconButton size='small' onClick={() => dispatch(setFileView('list'))}>
-            <DehazeIcon />
-          </IconButton>
-        </Grid>
-      </Grid>
+        <Autocomplete
+          options={options}
+          getOptionLabel={option => option.label}
+          value={options.find(el => el.value === sort)}
+          onChange={(_s, newValue) => {
+            if (newValue) setSort(newValue.value as SortType)
+          }}
+          style={{ width: 300 }}
+          // eslint-disable-next-line react/jsx-props-no-spreading
+          renderInput={params => <TextField {...params} label='Сортировка' variant='outlined' />}
+        />
+      </Stack>
+      <Stack direction='row'>
+        <IconButton size='small' onClick={() => dispatch(setFileView('plate'))}>
+          <AppsIcon />
+        </IconButton>
+        <IconButton size='small' onClick={() => dispatch(setFileView('list'))}>
+          <DehazeIcon />
+        </IconButton>
+      </Stack>
       <FileList />
       <Popup />
       <Uploader />
